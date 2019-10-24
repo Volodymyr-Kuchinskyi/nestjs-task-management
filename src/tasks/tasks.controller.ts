@@ -50,7 +50,7 @@ export class TasksController {
     @Body() createTaskDto: CreateTaskDto,
     @GetUser() user: User,
   ): Promise<Task> {
-    return this.tasksService.create(createTaskDto, user);
+    return this.tasksService.createTask(createTaskDto, user);
   }
 
   @Patch('/:id/status')
@@ -59,7 +59,7 @@ export class TasksController {
     @Body('status', TaskStatusValidationPipe) status: TaskStatus,
     @GetUser() user: User,
   ): Promise<Task> {
-    return this.tasksService.updateStatus(id, status, user);
+    return this.tasksService.updateTaskStatus(id, status, user);
   }
 
   @Delete('/:id')
@@ -67,6 +67,6 @@ export class TasksController {
     @Param('id', ParseIntPipe) id: number,
     @GetUser() user: User,
   ): Promise<void> {
-    return this.tasksService.delete(id, user);
+    return this.tasksService.deleteTask(id, user);
   }
 }
